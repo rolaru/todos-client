@@ -1,7 +1,9 @@
+import PageHeader from '../../../components/page-header/page-header';
+
 const RegisterPage = () => {
   return (
-    <div className="register-page">
-      <h2>Register</h2>
+    <div className="page page--centered register-page">
+      <PageHeader title="Welcome!" subtitle="Sign up to start using Simpledo today." />
     </div>
   );
 };
