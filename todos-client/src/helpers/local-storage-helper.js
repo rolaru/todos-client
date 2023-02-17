@@ -14,3 +14,5 @@ export const saveToStorage = (key, value) => {
     console.error('Error saving to local storage: ', error.message);
   }
 };
+
+export const deleteFromStorage = (key) => localStorage.removeItem(key);
