@@ -1,7 +1,9 @@
+import PageHeader from '../../components/page-header/page-header';
+
 const TodosPage = () => {
   return (
-    <div className="todos-page">
-      <h2>TODOS</h2>
+    <div className="page page--centered todos-page">
+      <PageHeader title="Todo List" />
     </div>
   );
 };
