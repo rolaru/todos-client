@@ -1,0 +1,23 @@
+{
+  "name": "todos-server",
+  "version": "1.0.0",
+  "description": "The Todos server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rolaru/todos.git"
+  },
+  "keywords": [
+    "Todos",
+    "server"
+  ],
+  "author": "Olaru Razvan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rolaru/todos/issues"
+  },
+  "homepage": "https://github.com/rolaru/todos#readme"
+}
