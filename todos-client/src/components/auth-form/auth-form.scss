@@ -1,0 +1,15 @@
+.auth-form {
+  width: 33rem;
+
+  &__input {
+    margin-top: 20px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__action-button {
+    margin-top: 50px;
+  }
+}
