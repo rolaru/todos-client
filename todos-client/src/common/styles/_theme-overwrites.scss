@@ -39,6 +39,10 @@ body,
   &--centered {
     width: auto;
     height: auto;
+  
+    @include is-mobile {
+      width: calc(100% - 40px);
+    }
   }
 }
 
