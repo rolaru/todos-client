@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-family: 'MarkPro-Book', Arial, Helvetica, sans-serif, system-ui;
   font-size: 62.5%;
@@ -5,4 +9,24 @@ html {
 
 body {
   margin: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.page {
+  padding: 35px 30px;
+  background: $background-gray;
+
+  &--centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100%;
+  }
 }
