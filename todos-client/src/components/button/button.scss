@@ -1,0 +1,30 @@
+@import './../../common/styles/theme-variables';
+
+.button {
+  width: 100%;
+  padding: 0.8rem 1.6rem;
+  border: 0;
+  border-radius: 4px;
+  font-family: $default-font;
+  font-size: 1.6rem;
+  color: $secondary-color;
+  cursor: pointer;
+
+  &--primary {
+    background-color: $primary-color;
+
+    &:hover {
+      background-color: darken($primary-color, 5%);
+    }
+  }
+
+  &--link {
+    display: inline-block;
+    width: auto;
+    padding: 0;
+    font-size: 1.4rem;
+    color: $primary-color;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+}
