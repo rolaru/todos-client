@@ -1,3 +1,5 @@
+@import './../../common/styles/breakpoints';
+
 .auth-form {
   width: 33rem;
 
@@ -11,5 +13,10 @@
 
   &__action-button {
     margin-top: 50px;
+  }
+
+  @include is-mobile {
+    width: 100%;
+    min-width: 200px;
   }
 }
