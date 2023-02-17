@@ -1,0 +1,21 @@
+@import './../../common/styles/theme-variables';
+
+.form-input {
+  width: 100%;
+  padding: 1rem 0;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: $input-border-color;
+  font-family: $default-font;
+  font-size: 1.6rem;
+  color: $default-font-color;
+
+  &:focus {
+    border-color: $primary-color;
+    outline: none;
+  }
+
+  &::placeholder {
+    color: $placeholder-font-color;
+  }
+}
