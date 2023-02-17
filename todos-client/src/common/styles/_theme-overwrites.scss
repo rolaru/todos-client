@@ -9,6 +9,7 @@ html {
 
 body {
   margin: 0;
+  background: $viewport-background;
 }
 
 html,
@@ -20,13 +21,12 @@ body,
 
 .page {
   padding: 35px 30px;
-  background: $background-gray;
+  background: $page-background;
 
   &--centered {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    min-height: 100%;
+    flex-direction: column;
   }
 }
