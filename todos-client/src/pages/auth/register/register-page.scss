@@ -1,0 +1,14 @@
+.register-page {
+  &.page {
+    padding-bottom: 63px;
+  }
+
+  &__form {
+    margin-top: 30px;
+  }
+
+  &__login-link {
+    display: inline-block;
+    margin-top: 20px;
+  }
+}
