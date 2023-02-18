@@ -1,0 +1,17 @@
+@import './../../common/styles/theme-variables';
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+
+  &__input {
+    width: 1.8rem;
+    height: 1.8rem;
+    accent-color: $primary-color;
+  }
+
+  &__label {
+    margin-left: 1.4rem;
+    cursor: pointer;
+  }
+}
