@@ -21,7 +21,7 @@ export const todosReducers = {
     const newTodos = [ ...state.todos ];
     const updatedTodoIndex = state.todos.findIndex(todo => todo.id === id);
 
-    if (updatedTodoIndex) {
+    if (updatedTodoIndex !== -1) {
       newTodos[updatedTodoIndex] = {
         ...newTodos[updatedTodoIndex],
         isDone
@@ -39,7 +39,7 @@ export const todosReducers = {
     const newTodos = [ ...state.todos ];
     const deletedTodoIndex = state.todos.findIndex(todo => todo.id === id);
 
-    if (deletedTodoIndex) {
+    if (deletedTodoIndex !== -1) {
       newTodos.splice(deletedTodoIndex, 1);
     }
 
