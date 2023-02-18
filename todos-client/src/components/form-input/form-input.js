@@ -4,7 +4,8 @@ const FormInput = ({
   classes,
   placeholder = '',
   value = '',
-  onChange = () => {}
+  onChange = () => {},
+  ...otherInputProps
 }) => {
   const extraClasses = classes ? ' ' + classes : '';
 
@@ -15,6 +16,7 @@ const FormInput = ({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      {...otherInputProps}
     />
   );
 };
