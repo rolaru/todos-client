@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 
-import TodosRoutes from './routes';
+import AppShell from './app-shell';
 
 import './common/styles/index.css';
 
@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <TodosRoutes />
+    <AppShell />
   </React.StrictMode>
 );
 
