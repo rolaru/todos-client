@@ -1,13 +1,21 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import Button from './../../components/button/button';
+
+import './not-found-page.css';
 
 const NotFoundPage = () => {
+  const navigate = useNavigate();
+
+  const onNavigateBackHome = () => navigate('/');
+
   return (
-    <div className="not-found-page">
+    <div className="page page--centered not-found-page">
       <h2>404: Page not found!</h2>
 
-      <Link className="not-found-page__home-link" to="/">
-        Go back home
-      </Link>
+      <Button classes="not-found-page__home-button" onClick={onNavigateBackHome}>
+        Go to Home Page
+      </Button>
     </div>
   );
 };
