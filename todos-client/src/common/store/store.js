@@ -10,8 +10,6 @@ import { generateTodosActions } from './actions/todos-actions';
 import { userReducers } from './reducers/user-reducers';
 import { todosReducers } from './reducers/todos-reducers';
 
-import todosMockEntries from './../../pages/todos-page/todos-mock-entries';
-
 const ActionNames = {
   ...UserActionNames,
   ...TodosActionNames
@@ -19,7 +17,7 @@ const ActionNames = {
 
 export const defaultGlobalState = {
   user: getFromStorage('user'),
-  todos: todosMockEntries
+  todos: []
 };
 
 export const GlobalStateContext = createContext();
