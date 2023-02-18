@@ -6,7 +6,7 @@ import {
   Navigate
 } from 'react-router-dom';
 
-import { getFromStorage } from './helpers/local-storage-helper';
+// import { getFromStorage } from './helpers/local-storage-helper';
 
 import TodosPage from './pages/todos-page/todos-page';
 import LoginPage from './pages/auth/login-page/login-page';
@@ -14,13 +14,13 @@ import RegisterPage from './pages/auth/register/register-page';
 import NotFoundPage from './pages/not-found-page/not-found-page';
 
 const PrivateRoute = ({ children }) => {
-  const user = getFromStorage('user');
+  // const user = getFromStorage('user');
 
-  if (user) {
+  // if (user) {
     return children ? children : <Outlet />;
-  } else {
-    return <Navigate to="/auth/login" replace />;
-  }
+  // } else {
+  //   return <Navigate to="/auth/login" replace />;
+  // }
 };
 
 const TodosRoutes = () => (
