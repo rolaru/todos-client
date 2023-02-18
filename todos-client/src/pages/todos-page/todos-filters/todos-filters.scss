@@ -1,0 +1,24 @@
+@import './../../../common/styles/theme-variables';
+
+.todos-filters {
+  margin-top: 50px;
+  font-size: 1.4rem;
+
+  &__label {
+    margin-right: 1.7rem;
+    color: rgba($default-font-color, 0.59);
+  }
+
+  &__button {
+    margin-left: 1rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &--active {
+      color: $default-font-color;
+      text-decoration: none;
+    }
+  }
+}

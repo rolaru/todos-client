@@ -1,0 +1,20 @@
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__close-button {
+    width: 1.9rem;
+    height: 1.9rem;
+    margin-left: 1.5rem;
+    padding: 0.4rem; // left a little bit of padding so the button is esily clickable
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    & > img {
+      width: 100%; // 11px since 1.9rem - 2 * 0.4rem = 1.1rem
+      height: 100%;
+    }
+  }
+}
