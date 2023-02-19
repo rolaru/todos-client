@@ -18,7 +18,7 @@ const TodosPage = () => {
   } = useContext(ActionsContext);
 
   const [filteredTodos, setFilteredTodos] = useState(todos);
-  const [activeFilter, setActiveFilter] = useState();
+  const [activeFilter, setActiveFilter] = useState(null);
   const [newTodoText, setNewTodoText] = useState('');
 
   useEffect(() => {
