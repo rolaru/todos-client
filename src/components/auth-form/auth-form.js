@@ -5,19 +5,29 @@ import FormInput from '../form-input/form-input';
 
 import './auth-form.css';
 
+const defaultLoginState = {
+  email: '',
+  password: ''
+};
+
+const defaultRegisterState = {
+  fullName: '',
+  email: '',
+  password: ''
+};
+
 const AuthForm = ({
   children,
   classes,
   isRegisterForm,
+  errors,
   onChange,
   submitButtonText = 'Submit',
   onSubmit
 }) => {
-  const [formValue, setFormValue] = useState({
-    fullName: '',
-    email: '',
-    password: ''
-  });
+  const [formValue, setFormValue] = useState(
+    isRegisterForm ? defaultRegisterState : defaultLoginState
+  );
 
   const extraClasses = classes ? ' ' + classes : '';
 
@@ -50,18 +60,29 @@ const AuthForm = ({
           onChange={onChangeFullName}
         />
       }
+      {isRegisterForm && errors.fullName &&
+        <div className="error">{ errors.fullName }</div>
+      }
+
       <FormInput
         classes="auth-form__input"
         placeholder="E-mail"
         value={formValue.email}
         onChange={onChangeEmail}
       />
+      {errors.email &&
+        <div className="error">{ errors.email }</div>
+      }
+
       <FormInput
         classes="auth-form__input"
         placeholder="Password"
         value={formValue.password}
         onChange={onChangePassword}
       />
+      {errors.password &&
+        <div className="error">{ errors.password }</div>
+      }
 
       <div className="auth-form__additional-content">
         {children}

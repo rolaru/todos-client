@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
@@ -10,19 +10,31 @@ import PageHeader from './../../../components/page-header/page-header';
 
 import { getFromStorage, saveToStorage } from './../../../helpers/local-storage-helper';
 import { decodeJwtToken } from './../../../helpers/auth-helper';
+
+import authValidators from './../../../validators/auth-validators';
+
 import { REGISTER } from './../auth.gql';
 
 import './register-page.css';
 
+const defaultErrorsState = {
+  fullName: '',
+  email: '',
+  password: ''
+};
+
 const RegisterPage = () => {
   const { login } = useContext(ActionsContext);
+
+  const [errors, setErrors] = useState(defaultErrorsState);
 
   const navigate = useNavigate();
 
   const [
     gqlRegister,
     {
-      loading
+      loading,
+      error: registerError
     }
   ] = useMutation(REGISTER);
 
@@ -33,10 +45,17 @@ const RegisterPage = () => {
     }
   }, []);
 
-  const onFormChange = (value) => {};
-
   const onFormSubmit = async (formValue) => {
     try {
+      const formErrors = authValidators.validateForm(formValue);
+      const hasErrors = Object.values(formErrors).filter(error => !!error).length > 0;
+
+      setErrors(formErrors);
+
+      if (hasErrors) {
+        return;
+      }
+
       const response = await gqlRegister({
         variables: formValue
       });
@@ -58,11 +77,14 @@ const RegisterPage = () => {
     <div className="page page--centered register-page">
       <LoadingSpinner isVisible={loading} />
       <PageHeader title="Welcome!" subtitle="Sign up to start using Simpledo today." />
+      {registerError &&
+        <div className="error">An error occured while trying to register your account.</div>
+      }
       <AuthForm
         classes="register-page__form"
         isRegisterForm={true}
         submitButtonText="Sign Up"
-        onChange={onFormChange}
+        errors={errors}
         onSubmit={onFormSubmit}
       >
         <Link

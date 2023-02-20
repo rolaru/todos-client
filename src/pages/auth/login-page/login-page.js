@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
@@ -10,6 +10,9 @@ import LoadingSpinner from './../../../components/loading-spinner/loading-spinne
 
 import { getFromStorage, saveToStorage } from './../../../helpers/local-storage-helper';
 import { decodeJwtToken } from './../../../helpers/auth-helper';
+
+import authValidators from '../../../validators/auth-validators';
+
 import { LOGIN } from './../auth.gql';
 
 import './login-page.css';
@@ -17,12 +20,18 @@ import './login-page.css';
 const LoginPage = () => {
   const { login } = useContext(ActionsContext);
 
+  const [errors, setErrors] = useState({
+    email: '',
+    password: ''
+  });
+
   const navigate = useNavigate();
   
   const [
     gqlLogin,
     {
-      loading
+      loading,
+      error: loginError
     }
   ] = useMutation(LOGIN);
 
@@ -33,12 +42,17 @@ const LoginPage = () => {
     }
   }, []);
 
-  const onFormChange = (formValue) => {
-
-  };
-
   const onFormSubmit = async (formValue) => {
     try {
+      const formErrors = authValidators.validateForm(formValue);
+      const hasErrors = Object.values(formErrors).filter(error => !!error).length > 0;
+
+      setErrors(formErrors);
+
+      if (hasErrors) {
+        return;
+      }
+
       const response = await gqlLogin({
         variables: formValue
       });
@@ -60,10 +74,11 @@ const LoginPage = () => {
     <div className="page page--centered login-page">
       <LoadingSpinner isVisible={loading} />
       <PageHeader title="Welcome back!" subtitle="Login to continue." />
+      {loginError && <div className="error">Invalid email or password.</div>}
       <AuthForm
         classes="login-page__form"
         submitButtonText="Log In"
-        onChange={onFormChange}
+        errors={errors}
         onSubmit={onFormSubmit}
       >
         <Link
