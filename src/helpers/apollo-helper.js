@@ -1,8 +1,26 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+
+import { getFromStorage } from './local-storage-helper';
 
 export const apiEndpoint = 'http://localhost:80/';
 
-export const apollo = new ApolloClient({
+const httpLink = createHttpLink({
   uri: apiEndpoint,
-  cache: new InMemoryCache({ addTypename: false }),
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = getFromStorage('token');
+
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    }
+  }
+});
+
+export const apollo = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache({ addTypename: false })
 });

@@ -19,7 +19,7 @@ import {
 import './todos-page.css';
 
 const TodosPage = () => {
-  const { todos } = useContext(GlobalStateContext);
+  const { todos, user } = useContext(GlobalStateContext);
   const {
     setTodos,
     createTodo,
@@ -35,7 +35,7 @@ const TodosPage = () => {
     loading: getTodosLoading,
     error: getTodosError,
     data: todosData,
-  } = useQuery(GET_ALL_TODOS_FOR_USER, { variables: { userId: 1 } });
+  } = useQuery(GET_ALL_TODOS_FOR_USER, { variables: { userId: user?.id } });
 
   const [
     gqlAddTodo,
@@ -66,7 +66,6 @@ const TodosPage = () => {
     createTodoLoading ||
     updateTodoLoading ||
     deleteTodoLoading;
-  const errors = [getTodosError, createTodoError].filter((error) => !!error);
 
   useEffect(() => {
     const todos = todosData?.getAllTodosForUser;
@@ -93,7 +92,7 @@ const TodosPage = () => {
   const onAddTodo = async (event) => {
     if (event.key === 'Enter') {
       const response = await gqlAddTodo({
-        variables: { userId: 1, content: newTodoText }
+        variables: { userId: user?.id, content: newTodoText }
       });
       const newlyAddedTodo = response?.data?.createTodo;
 
