@@ -14,7 +14,7 @@ const Checkbox = ({
   return (
     <div className={'checkbox' + extraClasses}>
       <input
-        id={id}
+        id={'todo-checkbox-' + id}
         className="checkbox__input"
         type="checkbox"
         checked={isChecked}
@@ -23,7 +23,7 @@ const Checkbox = ({
       {label &&
         <label
           className="checkbox__label"
-          htmlFor={id}
+          htmlFor={'todo-checkbox-' + id}
         >
           {label}
         </label>

@@ -3,6 +3,7 @@ import './form-input.css';
 const FormInput = ({
   classes,
   placeholder = '',
+  type = 'text',
   value = '',
   onChange = () => {},
   ...otherInputProps
@@ -12,7 +13,7 @@ const FormInput = ({
   return (
     <input 
       className={'form-input' + extraClasses}
-      type="text"
+      type={type}
       placeholder={placeholder}
       value={value}
       onChange={onChange}

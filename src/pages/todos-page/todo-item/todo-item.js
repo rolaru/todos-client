@@ -6,7 +6,7 @@ import './todo-item.css';
 
 import closeIcon from './../../../common/assets/images/close.svg';
 
-const TodoItem = ({
+const TodoItem = memo(({
   id,
   classes,
   content,
@@ -16,7 +16,7 @@ const TodoItem = ({
 }) => {
   const extraClasses = classes ? ' ' + classes : '';
 
-  const onChangeTodo = (event) => onChange(id, event.target.checked);
+  const onChangeTodo = () => onChange(id, !isDone);
 
   const onDeleteTodo = () => onDelete(id);
 
@@ -38,8 +38,8 @@ const TodoItem = ({
       </button>
     </li>
   );
-};
+});
 
 // there can be a lot of items in a list so we can wrap this component with memo
 // so that TodoItems don't get rerendered each time the parent triggers a rerender
-export default memo(TodoItem);
+export default TodoItem;

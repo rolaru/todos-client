@@ -75,6 +75,7 @@ const AuthForm = ({
       }
 
       <FormInput
+        type="password"
         classes="auth-form__input"
         placeholder="Password"
         value={formValue.password}

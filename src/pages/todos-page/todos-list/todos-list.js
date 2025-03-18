@@ -1,8 +1,9 @@
+import { memo } from 'react';
 import TodoItem from '../todo-item/todo-item';
 
 import './todos-list.css';
 
-const TodosList = ({ classes, filteredTodos, onChangeTodo, onDeleteTodo }) => {
+const TodosList = memo(({ classes, filteredTodos, onChangeTodo, onDeleteTodo }) => {
   const extraClasses = classes ? ' ' + classes : '';
 
   return (
@@ -20,6 +21,6 @@ const TodosList = ({ classes, filteredTodos, onChangeTodo, onDeleteTodo }) => {
       ))}
     </ul>
   );
-};
+});
 
 export default TodosList;
