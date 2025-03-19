@@ -13,12 +13,8 @@ import './todos-page.css';
 
 const TodosPage = () => {
   const { todos: contextTodos, user } = useContext(GlobalStateContext);
-  const {
-    setTodos,
-    createTodo,
-    updateTodo,
-    deleteTodo
-  } = useContext(ActionsContext);
+  const { setTodos, createTodo, updateTodo, deleteTodo } =
+    useContext(ActionsContext);
 
   const [activeFilter, setActiveFilter] = useState(null);
   const [newTodoText, setNewTodoText] = useState('');
@@ -29,7 +25,7 @@ const TodosPage = () => {
     error,
     addTodo,
     updateTodo: gqlUpdateTodo,
-    deleteTodo: gqlDeleteTodo
+    deleteTodo: gqlDeleteTodo,
   } = useTodoOperations(user?.id);
 
   const filteredTodos = useTodoFiltering(contextTodos, activeFilter);
@@ -44,7 +40,7 @@ const TodosPage = () => {
     if (event.key === 'Enter' && newTodoText.trim()) {
       try {
         const response = await addTodo({
-          variables: { userId: user?.id, content: newTodoText.trim() }
+          variables: { userId: user?.id, content: newTodoText.trim() },
         });
         const newlyAddedTodo = response?.data?.createTodo;
 
@@ -58,7 +54,7 @@ const TodosPage = () => {
     }
   };
 
-  const handleUpdateTodo = async (id, isDone) => {
+  const handleUpdateTodo = useCallback(async (id, isDone) => {
     try {
       const response = await gqlUpdateTodo({ variables: { id, isDone } });
       if (typeof response?.data?.updateTodo === 'boolean') {
@@ -67,26 +63,33 @@ const TodosPage = () => {
     } catch (err) {
       console.error('Failed to update todo:', err);
     }
-  };
+  }, [gqlUpdateTodo, updateTodo]);
 
-  const handleDeleteTodo = useCallback(async (id) => {
-    try {
-      await gqlDeleteTodo({ variables: { id } });
-      deleteTodo(id);
-    } catch (err) {
-      console.error('Failed to delete todo:', err);
-    }
-  }, [gqlDeleteTodo, deleteTodo]);
+  const handleDeleteTodo = useCallback(
+    async (id) => {
+      try {
+        await gqlDeleteTodo({ variables: { id } });
+        deleteTodo(id);
+      } catch (err) {
+        console.error('Failed to delete todo:', err);
+      }
+    },
+    [gqlDeleteTodo, deleteTodo]
+  );
 
   if (error) {
-    return <div className="error-message">Error loading todos. Please try again later.</div>;
+    return (
+      <div className="error-message">
+        Error loading todos. Please try again later.
+      </div>
+    );
   }
 
   return (
     <div className="page page--centered todos-page">
       <LoadingSpinner isVisible={loading} />
 
-      <PageHeader title="Todo List" />
+      <PageHeader title="Todo List" showLogoutButton={true} />
 
       <FormInput
         classes="todos-page__add-todo-input"

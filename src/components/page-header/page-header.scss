@@ -1,6 +1,12 @@
 @import './../../common/styles/theme-variables';
 
 .page-header {
+  &__logo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   &__title {
     margin: 25px 0 0 0;
     font-size: 2.2rem;
